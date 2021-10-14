@@ -22,9 +22,9 @@ export default {
   font-size: 0.24rem;
 }
 .footer p {
-  margin-top: 0.24rem;
+  margin-top: 0.12rem;
 }
 .footer p:last-child {
-  margin-bottom: 0.24rem;
+  margin-bottom: 0.12rem;
 }
 </style>

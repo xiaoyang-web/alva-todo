@@ -54,6 +54,9 @@ export default {
 </script>
 
 <style scoped>
+.input-box >>> .md-agree-icon.checked .md-agree-icon-container .md-icon-checked {
+  color: #4dba87;
+}
 .input-box {
   padding: 0 .32rem;
 }
@@ -61,4 +64,5 @@ export default {
   padding-top: 0;
   padding-bottom: 0;
 }
+
 </style>

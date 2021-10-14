@@ -1,27 +1,39 @@
 <template>
   <div class="list">
-    <div class="list-operation">
-      <md-notice-bar icon="volumn">剩余0条未完成</md-notice-bar>
-      <md-tab-bar immediate :has-ink="false" v-model="current" :items="items" @change="tabChange"/>
-    </div>
-    <div class="list-content">
-      <md-field v-if="filteredTodos.length > 0">
-        <template v-for="todo in filteredTodos">
-          <md-cell-item :title="todo.text" :key="todo.uid">
-            <md-agree
-              slot="left"
-              size="lg"
-              v-model="todo.done"/>
-            <md-icon slot="right" name="close"></md-icon>
-          </md-cell-item>
-        </template>
-      </md-field>
-      <md-result-page v-else text="暂无记录"></md-result-page>
-    </div>
+    <transition name="fade" mode="out-in">
+      <div class="list-main" key="main" v-if="todos.length > 0">
+        <div class="list-operation">
+          <md-notice-bar icon="info">
+            <p>共计 {{ censusTodo.allNum }} 条事项，剩余 {{ censusTodo.activeNum }} 条未完成</p>
+          </md-notice-bar>
+          <md-tab-bar ref="tabs" immediate :has-ink="false" v-model="current" :items="items" @change="tabChange"/>
+        </div>
+        <div class="list-content">
+          <md-field v-if="filteredTodos.length > 0">
+            <template v-for="(todo, index) in filteredTodos">
+              <md-cell-item :title="todo.text" :key="todo.uid" :no-border="index === filteredTodos.length-1">
+                <md-agree
+                  slot="left"
+                  size="lg"
+                  v-model="todo.done"
+                  @change="toggleTodo(todo)"/>
+                <md-icon slot="right" name="close" @click="removeTodo(todo)"></md-icon>
+              </md-cell-item>
+            </template>
+          </md-field>
+          <md-result-page img-url="./static/norecord.svg" v-else text="暂无记录"></md-result-page>
+        </div>
+      </div>
+      <div class="list-empty" key="empty" v-else>
+        <md-result-page img-url="./static/nothing.svg" text="没有记录啦，动手写点吧！"></md-result-page>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 const filters = {
   all: todos => todos,
   active: todos => todos.filter(todo => !todo.done),
@@ -45,12 +57,7 @@ export default {
         name: 3,
         label: '已完成',
         link: 'completed'
-      }],
-      agreeConf: {
-        name: 'agree1',
-        checked: false,
-        size: 'lg'
-      }
+      }]
     }
   },
   computed: {
@@ -62,9 +69,16 @@ export default {
     },
     filteredTodos () {
       return filters[this.visibility](this.todos)
+    },
+    censusTodo () {
+      const obj = {}
+      obj.activeNum = filters.active(this.todos).length
+      obj.allNum = filters.all(this.todos).length
+      return obj
     }
   },
   methods: {
+    ...mapActions(['toggleTodo', 'removeTodo']),
     tabChange (item) {
       const link = item.link
       if (this.visibility === link) return
@@ -75,27 +89,43 @@ export default {
 </script>
 
 <style scoped>
+.md-notice-bar { color: #4dba87; }
+.md-tab-bar { padding: 0; }
+.list >>> .md-cell-item-content { font-size: inherit; }
+.list >>> .md-tab-bar-item.is-active {
+  background: #4dba87;
+  color: #fff;
+}
+.list >>> .md-result-text {
+  color: #4dba87;
+}
+.list >>> .md-agree-icon.checked .md-agree-icon-container .md-icon-checked {
+  color: #4dba87;
+}
 .list {
   display: flex;
   flex-direction: column;
   flex: 1;
   padding: 0.32rem;
-  font-size: .32rem;
+  font-size: .28rem;
   overflow: hidden;
-  /* background: skyblue; */
-}
-.md-notice-bar {
-  color: #4dba87
-}
-.md-tab-bar {
-  padding: 0;
-}
-.list >>> .md-tab-bar-item.is-active {
-  background: #4dba87;
-  color: #fff;
 }
 .list-content {
   flex: 1;
   overflow: auto;
+}
+.list-main,
+.list-empty {
+  height: 100%;
+}
+.list-main {
+  display: flex;
+  flex-direction: column;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.4s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>

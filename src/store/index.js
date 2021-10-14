@@ -33,7 +33,7 @@ const store = new Vuex.Store({
       commit('removeTodo', todo)
     },
     toggleTodo ({ commit }, todo) {
-      commit('editTodo', { todo, done: !todo.done })
+      commit('editTodo', { todo, done: todo.done })
     },
     editTodo ({ commit }, { todo, value }) {
       commit('editTodo', { todo, text: value })
