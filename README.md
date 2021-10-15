@@ -1,4 +1,7 @@
-# vuex-demo
+# alva-todo
+
+## description
+一个简单的todolist
 
 ## Project setup
 ```
@@ -19,6 +22,3 @@ yarn build
 ```
 yarn lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
