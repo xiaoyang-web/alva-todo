@@ -3,6 +3,7 @@ import App from './App.vue'
 import store from './store'
 import './util/mandmobile'
 import router from './router'
+import './registerServiceWorker'
 
 Vue.config.productionTip = false
 
