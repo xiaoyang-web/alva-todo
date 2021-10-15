@@ -147,6 +147,7 @@ export default {
 .list .list-main .list-content {
   flex: 1;
   overflow: auto;
+  background: #fff;
 }
 /* 过渡动画 */
 .fade-enter-active, .fade-leave-active {

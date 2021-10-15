@@ -93,7 +93,7 @@ export default {
 .clear-btn {
   display: flex;
   align-items: center;
-  height: 1rem;
+  height: .72rem;
   padding: 0 0.32rem;
 }
 </style>

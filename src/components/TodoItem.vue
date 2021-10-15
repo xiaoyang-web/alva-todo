@@ -20,7 +20,7 @@
         :class="{'todo-done': todo.done}"
         slot="default"
         v-else
-        @dblclick="changeEditing"
+        @click="handleClick"
       >{{ todo.text }}</p>
       <div slot="right" class="todo-options">
         <md-icon name="edit" size="lg" @click="changeEditing"></md-icon>
@@ -61,6 +61,10 @@ export default {
       }
       this.editTodo({ todo, value })
       this.editing = false
+    },
+    handleClick () {
+      this.todo.done = !this.todo.done
+      this.toggleTodo(this.todo)
     }
   }
 }

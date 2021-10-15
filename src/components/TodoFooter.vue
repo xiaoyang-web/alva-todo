@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
-    <p class="desc">一个简单的todolist</p>
-    <p class="project-link">
+    <p class="desc">
+      一个简单的todolist，
       <a href="https://github.com/xiaoyang-web/alva-todo" target="_blank">View on GitHub</a>
     </p>
   </div>
