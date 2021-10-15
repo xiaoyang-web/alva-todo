@@ -94,6 +94,6 @@ export default {
   display: flex;
   align-items: center;
   height: 1rem;
-  padding: 0 0.32rem 0.5rem;
+  padding: 0 0.32rem;
 }
 </style>

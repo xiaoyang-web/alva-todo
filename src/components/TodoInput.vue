@@ -65,11 +65,18 @@ export default {
 .input-box >>> .md-agree-icon .md-agree-icon-container .md-icon.md-icon-check {
   color: #4dba87;
 }
+.input-box >>> .md-field-item-content:before {
+  display: none;
+}
 .input-box >>> .md-button.default.active:active {
   background: #4ab181;
 }
 .input-box >>> .md-button.default:after {
   border: none;
+}
+.input-box >>> .md-field {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 .md-button {
   color: #fff;
