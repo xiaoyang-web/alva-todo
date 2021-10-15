@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <todo-header title="TODO-LIST"/>
+    <todo-header/>
     <todo-input/>
     <todo-list/>
     <todo-footer/>

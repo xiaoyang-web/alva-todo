@@ -11,14 +11,7 @@
         <div class="list-content">
           <md-field v-if="filteredTodos.length > 0">
             <template v-for="(todo, index) in filteredTodos">
-              <md-cell-item :title="todo.text" :key="todo.uid" :no-border="index === filteredTodos.length-1">
-                <md-agree
-                  slot="left"
-                  size="lg"
-                  v-model="todo.done"
-                  @change="toggleTodo(todo)"/>
-                <md-icon slot="right" name="close" @click="removeTodo(todo)"></md-icon>
-              </md-cell-item>
+              <todo-item :todo="todo" :key="todo.uid" :noborder="index === filteredTodos.length - 1"></todo-item>
             </template>
           </md-field>
           <md-result-page img-url="./static/norecord.svg" v-else text="暂无记录"></md-result-page>
@@ -32,7 +25,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import TodoItem from './TodoItem.vue'
 
 const filters = {
   all: todos => todos,
@@ -57,8 +50,12 @@ export default {
         name: 3,
         label: '已完成',
         link: 'completed'
-      }]
+      }],
+      editing: false
     }
+  },
+  components: {
+    TodoItem
   },
   computed: {
     todos () {
@@ -78,7 +75,6 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['toggleTodo', 'removeTodo']),
     tabChange (item) {
       const link = item.link
       if (this.visibility === link) return
@@ -91,7 +87,6 @@ export default {
 <style scoped>
 .md-notice-bar { color: #4dba87; }
 .md-tab-bar { padding: 0; }
-.list >>> .md-cell-item-content { font-size: inherit; }
 .list >>> .md-tab-bar-item.is-active {
   background: #4dba87;
   color: #fff;
@@ -99,9 +94,7 @@ export default {
 .list >>> .md-result-text {
   color: #4dba87;
 }
-.list >>> .md-agree-icon.checked .md-agree-icon-container .md-icon-checked {
-  color: #4dba87;
-}
+
 .list {
   display: flex;
   flex-direction: column;
@@ -113,6 +106,7 @@ export default {
 .list-content {
   flex: 1;
   overflow: auto;
+  overflow-x: hidden;
 }
 .list-main,
 .list-empty {

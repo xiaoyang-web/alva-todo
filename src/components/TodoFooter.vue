@@ -1,7 +1,6 @@
 <template>
   <div class="footer">
     <p class="desc">一个简单的todolist</p>
-    <p class="author">&copy;Copyright 2021 alva-yky</p>
     <p class="project-link">
       <a href="#" target="_blank">View on GitHub</a>
     </p>

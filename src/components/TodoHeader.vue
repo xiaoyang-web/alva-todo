@@ -10,7 +10,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'alva-yky-todo'
+      default: 'ALVA-TODO'
     }
   }
 }
