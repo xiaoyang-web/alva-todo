@@ -8,4 +8,5 @@
   }
   resize()
   window.addEventListener('resize', resize)
+  document.body.style.height = `${window.innerHeight}px`
 })(window, document)
