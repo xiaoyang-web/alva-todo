@@ -15,15 +15,14 @@ export default {
 
 <style scoped>
 .footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;
   font-size: 0.24rem;
+  color: #4dba87;
 }
 .footer p {
-  margin-top: 0.12rem;
-}
-.footer p:last-child {
   margin-bottom: 0.12rem;
+}
+.footer .project-link a {
+  color: #4dba87;
 }
 </style>

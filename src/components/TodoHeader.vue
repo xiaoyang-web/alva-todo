@@ -17,12 +17,12 @@ export default {
 </script>
 
 <style scoped>
-div {
+.header {
   display: flex;
   justify-content: center;
   padding: 0.4rem 0;
 }
-h1 {
+.header h1 {
   font-size: 0.72rem;
   color: #4dba87;
 }

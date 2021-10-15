@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Vue from 'vue'
 import {
   Button,
@@ -8,7 +9,8 @@ import {
   NoticeBar,
   CellItem,
   Agree,
-  ResultPage
+  ResultPage,
+  Dialog
 } from 'mand-mobile'
 
 Vue.component(Button.name, Button)
@@ -20,3 +22,4 @@ Vue.component(NoticeBar.name, NoticeBar)
 Vue.component(CellItem.name, CellItem)
 Vue.component(Agree.name, Agree)
 Vue.component(ResultPage.name, ResultPage)
+Vue.component(Dialog.name, Dialog)

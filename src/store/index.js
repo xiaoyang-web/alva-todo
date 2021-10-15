@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-const STORAGE_KEY = 'alva-todos'
+const STORAGE_KEY = 'alva-todo'
 
 const store = new Vuex.Store({
   state: {
@@ -41,6 +41,11 @@ const store = new Vuex.Store({
     toggleAll ({ state, commit }, done) {
       state.todos.forEach((todo) => {
         commit('editTodo', { todo, done })
+      })
+    },
+    clearCompleted ({ state, commit }) {
+      state.todos.filter(todo => todo.done).forEach(todo => {
+        commit('removeTodo', todo)
       })
     }
   },
