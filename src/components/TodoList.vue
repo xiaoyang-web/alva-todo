@@ -1,7 +1,7 @@
 <template>
   <div class="list">
     <transition name="fade" mode="out-in">
-      <div class="list-main" key="list-main" v-if="todos.length > 0">
+      <div class="list-main" style="animation-duration: 0.3s" key="list-main" v-if="todos.length > 0">
         <div>
           <md-notice-bar icon="info">
             <p>
@@ -20,13 +20,16 @@
         </div>
         <div class="list-content">
           <md-field v-if="filteredTodos.length > 0">
-            <template v-for="(todo, index) in filteredTodos">
-              <todo-item
-                :todo="todo"
-                :key="todo.uid"
-                :noborder="index === filteredTodos.length - 1"
-              />
-            </template>
+            <transition-group name="fade">
+              <template v-for="(todo, index) in filteredTodos">
+                <todo-item
+                  :todo="todo"
+                  :key="todo.uid"
+                  :noborder="index === filteredTodos.length - 1"
+                  style="animation-duration: 0.3s"
+                />
+              </template>
+            </transition-group>
           </md-field>
           <md-result-page
             text="暂无记录"
@@ -35,7 +38,7 @@
           />
         </div>
       </div>
-      <div class="list-empty" key="list-empty" v-else>
+      <div class="list-empty" style="animation-duration: 0.3s" key="list-empty" v-else>
         <md-result-page img-url="./static/nothing.svg" text="没有记录啦，动手写点吧！"></md-result-page>
       </div>
     </transition>
@@ -148,12 +151,5 @@ export default {
   flex: 1;
   overflow: auto;
   background: #fff;
-}
-/* 过渡动画 */
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.4s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
 }
 </style>

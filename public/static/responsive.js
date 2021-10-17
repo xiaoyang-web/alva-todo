@@ -5,8 +5,8 @@
       ww = 750
     }
     document.documentElement.style.fontSize = ww * 100 / 750 + 'px'
-    document.body.style.height = `${window.innerHeight}px`
   }
   resize()
   window.addEventListener('resize', resize)
+  document.body.style.height = `${window.innerHeight}px`
 })(window, document)

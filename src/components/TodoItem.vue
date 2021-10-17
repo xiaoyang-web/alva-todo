@@ -23,8 +23,8 @@
         @click="handleClick"
       >{{ todo.text }}</p>
       <div slot="right" class="todo-options">
-        <md-icon name="edit" size="lg" @click="changeEditing"></md-icon>
-        <md-icon name="delete" size="lg" @click="removeTodo(todo)"></md-icon>
+        <md-button size="small" @click="changeEditing" round><md-icon name="edit"></md-icon></md-button>
+        <md-button size="small" @click="removeTodo(todo)" round><md-icon name="delete"></md-icon></md-button>
       </div>
     </md-cell-item>
   </div>
@@ -98,8 +98,13 @@ export default {
 }
 .todo-item .todo-options {
   display: flex;
-  justify-content: space-between;
-  width: 1rem;
+}
+.todo-item .todo-options button {
+  width: 0.6rem;
+  height: 0.6rem;
   color: #4dba87;
+}
+.todo-item .todo-options button:not(:last-child) {
+  margin-right: 0.2rem;
 }
 </style>
